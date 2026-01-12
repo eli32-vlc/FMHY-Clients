@@ -2,10 +2,21 @@
 
 Multi-platform client applications for [FMHY.net](https://fmhy.net) (FreeMediaHeckYeah). These are simple iframe-based clients that provide a native application experience across desktop and mobile platforms.
 
+## 🚀 Quick Start
+
+**New to this project?** Check out the [Quick Start Guide](QUICKSTART.md) to get running in minutes!
+
 ## Platforms Supported
 
 - **Desktop**: Windows, macOS, Linux (via Electron)
 - **Mobile**: iOS, Android (via Capacitor)
+
+## 📖 Documentation
+
+- **[QUICKSTART.md](QUICKSTART.md)** - Get up and running quickly
+- **[BUILD.md](BUILD.md)** - Detailed build instructions for all platforms
+- **[CONTRIBUTING.md](CONTRIBUTING.md)** - How to contribute to this project
+- **[LICENSE](LICENSE)** - ISC License
 
 ## Prerequisites
 
