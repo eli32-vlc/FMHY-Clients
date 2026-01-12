@@ -35,7 +35,9 @@
             iframe.addEventListener('error', function(e) {
                 console.error('Iframe failed to load:', e);
                 // Use safe DOM manipulation to prevent XSS
-                document.body.innerHTML = '';
+                while (document.body.firstChild) {
+                    document.body.removeChild(document.body.firstChild);
+                }
                 const errorDiv = document.createElement('div');
                 errorDiv.style.padding = '20px';
                 errorDiv.style.fontFamily = 'sans-serif';
