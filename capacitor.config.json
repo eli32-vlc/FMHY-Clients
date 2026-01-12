@@ -1,0 +1,14 @@
+{
+  "appId": "net.fmhy.mobile",
+  "appName": "FMHY",
+  "webDir": "mobile",
+  "bundledWebRuntime": false,
+  "server": {
+    "androidScheme": "https"
+  },
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  }
+}
