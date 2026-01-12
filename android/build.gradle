@@ -29,8 +29,10 @@ allprojects {
             force 'org.jetbrains.kotlin:kotlin-stdlib:1.9.24'
         }
     }
-    
-    // Force Java 17 for all subprojects to match system Java version
+}
+
+// Force Java 17 for all subprojects to match system Java version
+subprojects {
     afterEvaluate { project ->
         if (project.hasProperty('android')) {
             project.android {

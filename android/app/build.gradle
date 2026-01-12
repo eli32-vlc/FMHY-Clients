@@ -30,6 +30,12 @@ repositories {
     }
 }
 
+// Exclude old kotlin-stdlib-jdk7 and kotlin-stdlib-jdk8 dependencies
+configurations.all {
+    exclude group: 'org.jetbrains.kotlin', module: 'kotlin-stdlib-jdk7'
+    exclude group: 'org.jetbrains.kotlin', module: 'kotlin-stdlib-jdk8'
+}
+
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "androidx.appcompat:appcompat:$androidxAppCompatVersion"
@@ -43,12 +49,6 @@ dependencies {
     
     // Force Kotlin stdlib to resolve duplicate class issues
     implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.9.24'
-    
-    // Exclude old kotlin-stdlib-jdk7 and kotlin-stdlib-jdk8 dependencies
-    configurations.all {
-        exclude group: 'org.jetbrains.kotlin', module: 'kotlin-stdlib-jdk7'
-        exclude group: 'org.jetbrains.kotlin', module: 'kotlin-stdlib-jdk8'
-    }
 }
 
 apply from: 'capacitor.build.gradle'
