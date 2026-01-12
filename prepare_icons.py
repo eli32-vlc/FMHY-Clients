@@ -12,10 +12,10 @@ def download_icon(url, output_path):
     print(f"Downloading icon from {url}...")
     try:
         urllib.request.urlretrieve(url, output_path)
-        print(f"✓ Downloaded to {output_path}")
+        print(f"[OK] Downloaded to {output_path}")
         return True
     except Exception as e:
-        print(f"✗ Failed to download: {e}")
+        print(f"[FAIL] Failed to download: {e}")
         return False
 
 def create_placeholder(output_path, size=512):
@@ -23,7 +23,7 @@ def create_placeholder(output_path, size=512):
     print(f"Creating placeholder icon {size}x{size}...")
     img = Image.new('RGB', (size, size), color='#1a1a1a')
     img.save(output_path, 'PNG')
-    print(f"✓ Created placeholder at {output_path}")
+    print(f"[OK] Created placeholder at {output_path}")
 
 def prepare_desktop_icon():
     """Prepare icon for desktop (Electron)"""
@@ -41,9 +41,9 @@ def prepare_desktop_icon():
     # Verify the image
     try:
         img = Image.open(desktop_icon)
-        print(f"✓ Desktop icon ready: {img.size[0]}x{img.size[1]}")
+        print(f"[OK] Desktop icon ready: {img.size[0]}x{img.size[1]}")
     except Exception as e:
-        print(f"✗ Error with desktop icon: {e}")
+        print(f"[FAIL] Error with desktop icon: {e}")
         return False
     
     return True
@@ -60,10 +60,10 @@ def prepare_ios_icon():
         resample_filter = getattr(Image, 'LANCZOS', Image.Resampling.LANCZOS if hasattr(Image, 'Resampling') else 1)
         ios_img = img.resize((1024, 1024), resample_filter)
         ios_img.save(ios_icon_path, 'PNG')
-        print(f"✓ iOS icon ready: {ios_icon_path}")
+        print(f"[OK] iOS icon ready: {ios_icon_path}")
         return True
     except Exception as e:
-        print(f"✗ Error preparing iOS icon: {e}")
+        print(f"[FAIL] Error preparing iOS icon: {e}")
         return False
 
 def prepare_android_icon():
@@ -94,10 +94,10 @@ def prepare_android_icon():
             resized.save(f"{output_dir}/ic_launcher_round.png", 'PNG')
             resized.save(f"{output_dir}/ic_launcher_foreground.png", 'PNG')
         
-        print("✓ Android icons ready")
+        print("[OK] Android icons ready")
         return True
     except Exception as e:
-        print(f"✗ Error preparing Android icons: {e}")
+        print(f"[FAIL] Error preparing Android icons: {e}")
         return False
 
 if __name__ == "__main__":
@@ -112,10 +112,10 @@ if __name__ == "__main__":
     
     print("=" * 50)
     if success:
-        print("✅ All icons prepared successfully!")
+        print("[SUCCESS] All icons prepared successfully!")
         print("\nNote: If you see placeholder icons, they will be replaced")
         print("when https://fmhy.net/test.png becomes accessible.")
         sys.exit(0)
     else:
-        print("⚠️  Some icons may not be ready. Check errors above.")
+        print("[WARNING] Some icons may not be ready. Check errors above.")
         sys.exit(1)
