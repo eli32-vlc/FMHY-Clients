@@ -1,2 +1,0 @@
-This is a placeholder for the app icon.
-For actual builds, replace this with a proper 512x512 PNG icon file.

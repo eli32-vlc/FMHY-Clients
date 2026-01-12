@@ -18,14 +18,15 @@ npm start
 ```
 
 ### Option 2: Download Pre-built Binaries
-_(Coming soon - once releases are published)_
 
 1. Go to [Releases](https://github.com/eli32-vlc/FMHY-Clients/releases)
 2. Download the appropriate file for your platform:
-   - **Windows**: `.exe` installer or portable
+   - **Windows**: `.exe` portable executable
    - **macOS**: `.dmg` installer
-   - **Linux**: `.AppImage`, `.deb`, or `.rpm`
+   - **Linux**: `.AppImage`
 3. Install and run!
+
+**Note**: Releases are automatically built via GitHub Actions when tags are pushed.
 
 ---
 
@@ -65,9 +66,10 @@ _(Coming soon - once releases are published)_
 4. In Android Studio: Wait for Gradle sync, select device/emulator, click Run ▶
 
 ### For End Users
-_(Coming soon - once published to app stores)_
-- **iOS**: Download from the App Store
-- **Android**: Download from Google Play Store or sideload the APK
+
+Download pre-built mobile apps from [GitHub Releases](https://github.com/eli32-vlc/FMHY-Clients/releases):
+- **iOS**: Download `.ipa` file and install via sideloading tools (AltStore, Sideloadly, etc.)
+- **Android**: Download `.apk` file and install (enable "Unknown Sources" in settings)
 
 ---
 

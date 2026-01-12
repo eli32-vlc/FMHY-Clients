@@ -15,8 +15,18 @@ Multi-platform client applications for [FMHY.net](https://fmhy.net) (FreeMediaHe
 
 - **[QUICKSTART.md](QUICKSTART.md)** - Get up and running quickly
 - **[BUILD.md](BUILD.md)** - Detailed build instructions for all platforms
+- **[RELEASE.md](RELEASE.md)** - How to create and publish releases
 - **[CONTRIBUTING.md](CONTRIBUTING.md)** - How to contribute to this project
 - **[LICENSE](LICENSE)** - ISC License
+
+## 📦 Downloads
+
+Pre-built applications are available on the [Releases page](https://github.com/eli32-vlc/FMHY-Clients/releases):
+- **Windows** - Portable EXE
+- **macOS** - DMG installer
+- **Linux** - AppImage
+- **Android** - APK
+- **iOS** - IPA (sideload required)
 
 ## Prerequisites
 

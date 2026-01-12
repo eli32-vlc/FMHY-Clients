@@ -97,7 +97,7 @@ npm run cap:open:ios
 #### Distribution (iOS)
 1. In Xcode, select "Any iOS Device"
 2. Product → Archive
-3. Follow the prompts to upload to App Store Connect or export for ad-hoc distribution
+3. Export IPA for ad-hoc distribution or enterprise deployment
 
 ---
 
@@ -144,12 +144,7 @@ cd android
 ```
 Output: `android/app/build/outputs/apk/release/app-release.apk`
 
-#### Build App Bundle (for Play Store)
-```bash
-cd android
-./gradlew bundleRelease
-```
-Output: `android/app/build/outputs/bundle/release/app-release.aab`
+---
 
 ---
 
@@ -172,12 +167,12 @@ Output: `android/app/build/outputs/bundle/release/app-release.aab`
 ### iOS
 - Requires a Mac for building
 - Free Apple ID allows testing on personal devices (7-day limit)
-- App Store distribution requires a paid Developer Program membership ($99/year)
+- For distribution, export IPA for sideloading or enterprise deployment
 
 ### Android
 - Can be built on any platform (Windows, macOS, Linux)
-- Debug builds can be sideloaded on any Android device
-- Play Store requires a Developer account ($25 one-time fee)
+- APK builds can be sideloaded on any Android device
+- Enable "Install from Unknown Sources" in Android settings to install APK
 
 ---
 

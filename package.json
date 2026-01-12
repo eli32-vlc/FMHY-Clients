@@ -19,7 +19,10 @@
     "fmhy",
     "electron"
   ],
-  "author": "",
+  "author": {
+    "name": "FMHY Contributors",
+    "email": "info@fmhy.net"
+  },
   "license": "ISC",
   "devDependencies": {
     "electron": "^39.2.7",
@@ -28,6 +31,7 @@
   "build": {
     "appId": "net.fmhy.client",
     "productName": "FMHY Client",
+    "publish": null,
     "directories": {
       "output": "dist"
     },
