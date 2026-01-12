@@ -15,11 +15,36 @@
             width: 100%;
             height: 100%;
             overflow: hidden;
+            background-color: #1a1a1a; /* Match Electron window background */
         }
         iframe {
             width: 100%;
             height: 100%;
             border: none;
+            display: block; /* Remove any potential whitespace */
+        }
+        #loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #ffffff;
+            font-family: sans-serif;
+            text-align: center;
+            display: none; /* Hidden by default, shown if iframe takes too long */
+        }
+        .spinner {
+            border: 3px solid #333;
+            border-top: 3px solid #fff;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
     </style>
     <script>
@@ -27,13 +52,22 @@
         window.addEventListener('DOMContentLoaded', function() {
             console.log('DOM loaded');
             const iframe = document.querySelector('iframe');
+            const loading = document.getElementById('loading');
+            
+            // Show loading indicator if iframe takes more than 2 seconds
+            const loadingTimeout = setTimeout(function() {
+                loading.style.display = 'block';
+            }, 2000);
             
             iframe.addEventListener('load', function() {
                 console.log('Iframe loaded successfully');
+                clearTimeout(loadingTimeout);
+                loading.style.display = 'none';
             });
             
             iframe.addEventListener('error', function(e) {
                 console.error('Iframe failed to load:', e);
+                clearTimeout(loadingTimeout);
                 // Use safe DOM manipulation to prevent XSS
                 while (document.body.firstChild) {
                     document.body.removeChild(document.body.firstChild);
@@ -41,6 +75,7 @@
                 const errorDiv = document.createElement('div');
                 errorDiv.style.padding = '20px';
                 errorDiv.style.fontFamily = 'sans-serif';
+                errorDiv.style.color = '#ffffff';
                 
                 const errorTitle = document.createElement('h1');
                 errorTitle.textContent = 'Error Loading FMHY';
@@ -60,6 +95,10 @@
     </script>
 </head>
 <body>
+    <div id="loading">
+        <div class="spinner"></div>
+        <div>Loading FMHY...</div>
+    </div>
     <iframe src="https://fmhy.net" title="FMHY - FreeMediaHeckYeah"></iframe>
 </body>
 </html>

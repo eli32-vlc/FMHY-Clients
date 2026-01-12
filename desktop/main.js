@@ -5,6 +5,8 @@ function createWindow() {
   const mainWindow = new BrowserWindow({
     width: 1280,
     height: 800,
+    show: false, // Don't show until ready-to-show event
+    backgroundColor: '#1a1a1a', // Dark background to prevent white flash
     webPreferences: {
       nodeIntegration: false,
       contextIsolation: true,
@@ -17,6 +19,11 @@ function createWindow() {
       webSecurity: false
     },
     title: 'FMHY - FreeMediaHeckYeah'
+  });
+
+  // Show window only when content is ready to prevent white screen
+  mainWindow.once('ready-to-show', () => {
+    mainWindow.show();
   });
 
   mainWindow.loadFile(path.join(__dirname, 'index.html'));
