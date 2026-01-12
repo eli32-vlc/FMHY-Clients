@@ -18,10 +18,11 @@ A complete multi-platform client system for https://fmhy.net supporting:
 ### Desktop (Electron)
 - **Framework**: Electron v39.2.7
 - **Structure**: Simple main process + HTML renderer with iframe
-- **Security**: Context isolation enabled, nodeIntegration disabled, strict CSP
+- **Security**: Context isolation enabled, nodeIntegration disabled, webSecurity disabled (required for iframe)
+- **White Screen Fix**: Implemented `ready-to-show` pattern to prevent white screen on launch (especially on macOS)
 - **Files**:
-  - `desktop/main.js` - Main Electron process
-  - `desktop/index.html` - UI with iframe to https://fmhy.net
+  - `desktop/main.js` - Main Electron process with proper window initialization
+  - `desktop/index.html` - UI with iframe to https://fmhy.net, loading indicator, and dark theme
   - `desktop/icon.png` - 512x512 application icon
 
 ### Mobile (Capacitor)
