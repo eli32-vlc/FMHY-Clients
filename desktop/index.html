@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; frame-src https://fmhy.net; style-src 'unsafe-inline';">
+    <!-- CSP disabled to allow iframe content to load properly -->
     <title>FMHY - FreeMediaHeckYeah</title>
     <style>
         * {
@@ -22,6 +22,42 @@
             border: none;
         }
     </style>
+    <script>
+        // Add error handling and logging for debugging
+        window.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM loaded');
+            const iframe = document.querySelector('iframe');
+            
+            iframe.addEventListener('load', function() {
+                console.log('Iframe loaded successfully');
+            });
+            
+            iframe.addEventListener('error', function(e) {
+                console.error('Iframe failed to load:', e);
+                // Use safe DOM manipulation to prevent XSS
+                while (document.body.firstChild) {
+                    document.body.removeChild(document.body.firstChild);
+                }
+                const errorDiv = document.createElement('div');
+                errorDiv.style.padding = '20px';
+                errorDiv.style.fontFamily = 'sans-serif';
+                
+                const errorTitle = document.createElement('h1');
+                errorTitle.textContent = 'Error Loading FMHY';
+                
+                const errorText = document.createElement('p');
+                errorText.textContent = 'The iframe failed to load. Please check your internet connection and try again.';
+                
+                const errorDetails = document.createElement('p');
+                errorDetails.textContent = 'Error: ' + (e.message || 'Unknown error');
+                
+                errorDiv.appendChild(errorTitle);
+                errorDiv.appendChild(errorText);
+                errorDiv.appendChild(errorDetails);
+                document.body.appendChild(errorDiv);
+            });
+        });
+    </script>
 </head>
 <body>
     <iframe src="https://fmhy.net" title="FMHY - FreeMediaHeckYeah"></iframe>
