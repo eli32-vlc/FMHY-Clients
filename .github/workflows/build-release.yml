@@ -20,6 +20,9 @@ jobs:
       - name: Install dependencies
         run: npm install
       
+      - name: Install Python dependencies
+        run: pip3 install Pillow
+      
       - name: Prepare icons
         run: python3 prepare_icons.py
       
@@ -45,6 +48,9 @@ jobs:
       - name: Install dependencies
         run: npm install
       
+      - name: Install Python dependencies
+        run: pip install Pillow
+      
       - name: Prepare icons
         run: python prepare_icons.py
       
@@ -69,6 +75,9 @@ jobs:
       
       - name: Install dependencies
         run: npm install
+      
+      - name: Install Python dependencies
+        run: pip3 install Pillow
       
       - name: Prepare icons
         run: python3 prepare_icons.py
@@ -100,6 +109,9 @@ jobs:
       
       - name: Install dependencies
         run: npm install
+      
+      - name: Install Python dependencies
+        run: pip3 install Pillow
       
       - name: Prepare icons
         run: python3 prepare_icons.py
