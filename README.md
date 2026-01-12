@@ -169,12 +169,21 @@ FMHY-Clients/
 - Simple iframe wrapper for FMHY.net
 - Native window controls and system integration
 - Responsive design for all screen sizes
-- Content Security Policy for enhanced security
 - Cross-platform consistency
+- Enhanced error handling and debugging support
 
 ## Security Note
 
-This application uses iframes to display content from https://fmhy.net. The Content Security Policy is configured to only allow framing from the official FMHY domain.
+This application uses iframes to display content from https://fmhy.net. 
+
+**Important Security Information:**
+- The application has disabled Electron's `webSecurity` setting to bypass X-Frame-Options restrictions that prevent fmhy.net from being embedded in iframes.
+- Without this setting, the application would show a white screen because fmhy.net sends `X-Frame-Options: DENY` and `frame-ancestors 'none'` headers.
+- Security mitigations in place:
+  - `nodeIntegration: false` - prevents Node.js APIs from being accessible in the renderer
+  - `contextIsolation: true` - isolates preload scripts from the web page context
+  - Content Security Policy has been removed to allow iframe content to load properly
+- **This is a client-side wrapper application only.** It does not store credentials, process sensitive data, or make any modifications to the fmhy.net content.
 
 ## Customization
 

@@ -9,7 +9,11 @@ function createWindow() {
       nodeIntegration: false,
       contextIsolation: true,
       webviewTag: false,
-      // Disable web security to bypass X-Frame-Options
+      // SECURITY NOTE: Disabling webSecurity is necessary because fmhy.net
+      // sends X-Frame-Options: DENY and frame-ancestors 'none' CSP headers,
+      // which prevent the site from being loaded in an iframe.
+      // Without this setting, the app shows a white screen.
+      // Security mitigations: nodeIntegration and contextIsolation remain enabled.
       webSecurity: false
     },
     title: 'FMHY - FreeMediaHeckYeah'
