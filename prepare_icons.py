@@ -56,7 +56,9 @@ def prepare_ios_icon():
     try:
         img = Image.open(source_icon)
         # iOS needs 1024x1024 for AppIcon
-        ios_img = img.resize((1024, 1024), Image.Resampling.LANCZOS)
+        # Use LANCZOS for compatibility with older PIL versions
+        resample_filter = getattr(Image, 'LANCZOS', Image.Resampling.LANCZOS if hasattr(Image, 'Resampling') else 1)
+        ios_img = img.resize((1024, 1024), resample_filter)
         ios_img.save(ios_icon_path, 'PNG')
         print(f"✓ iOS icon ready: {ios_icon_path}")
         return True
@@ -79,12 +81,15 @@ def prepare_android_icon():
     
     try:
         img = Image.open(source_icon)
+        # Use LANCZOS for compatibility with older PIL versions
+        resample_filter = getattr(Image, 'LANCZOS', Image.Resampling.LANCZOS if hasattr(Image, 'Resampling') else 1)
+        
         for density, size in sizes.items():
             output_dir = f"android/app/src/main/res/mipmap-{density}"
             os.makedirs(output_dir, exist_ok=True)
             
             # Create launcher icons
-            resized = img.resize((size, size), Image.Resampling.LANCZOS)
+            resized = img.resize((size, size), resample_filter)
             resized.save(f"{output_dir}/ic_launcher.png", 'PNG')
             resized.save(f"{output_dir}/ic_launcher_round.png", 'PNG')
             resized.save(f"{output_dir}/ic_launcher_foreground.png", 'PNG')
