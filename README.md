@@ -202,6 +202,17 @@ To point to a different URL, edit:
 
 ## Troubleshooting
 
+### White Screen on Launch
+The application has been updated to prevent white screen issues on macOS and other platforms:
+- Window is hidden until content is ready to display
+- Dark background color prevents white flash during loading
+- Loading spinner appears if content takes more than 2 seconds to load
+
+If you still experience white screen issues:
+- Check your internet connection (the app loads content from fmhy.net)
+- Try running with developer tools: `npm start -- --dev` to see console logs
+- Ensure `webSecurity: false` is set in `desktop/main.js` (required for iframe to work)
+
 ### Desktop Build Issues
 - Ensure you have the latest version of Node.js
 - Clear node_modules and reinstall: `rm -rf node_modules && npm install`
