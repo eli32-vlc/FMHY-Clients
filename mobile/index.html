@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; frame-src https://fmhy.net; style-src 'unsafe-inline';">
+    <!-- CSP disabled to allow iframe content to load properly -->
     <title>FMHY - FreeMediaHeckYeah</title>
     <style>
         * {
@@ -22,6 +22,22 @@
             border: none;
         }
     </style>
+    <script>
+        // Add error handling and logging for debugging
+        window.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM loaded');
+            const iframe = document.querySelector('iframe');
+            
+            iframe.addEventListener('load', function() {
+                console.log('Iframe loaded successfully');
+            });
+            
+            iframe.addEventListener('error', function(e) {
+                console.error('Iframe failed to load:', e);
+                document.body.innerHTML = '<div style="padding: 20px; font-family: sans-serif;"><h1>Error Loading FMHY</h1><p>The iframe failed to load. Please check your internet connection and try again.</p><p>Error: ' + e.message + '</p></div>';
+            });
+        });
+    </script>
 </head>
 <body>
     <iframe src="https://fmhy.net" title="FMHY - FreeMediaHeckYeah"></iframe>
