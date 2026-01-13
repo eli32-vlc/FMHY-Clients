@@ -4,6 +4,7 @@
 # Builds both debug and release APKs
 
 set -e  # Exit on error
+set -u  # Treat unset variables as errors
 
 echo "=================================="
 echo "FMHY Android APK Build Script"
