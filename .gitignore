@@ -23,6 +23,11 @@ android/local.properties
 *.apk
 *.aab
 
+# Android signing (keep these private!)
+android/keystore.properties
+android/app/*.keystore
+android/app/*.jks
+
 # Capacitor
 .capacitor/
 

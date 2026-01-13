@@ -15,6 +15,7 @@ Multi-platform client applications for [FMHY.net](https://fmhy.net) (FreeMediaHe
 
 - **[QUICKSTART.md](QUICKSTART.md)** - Get up and running quickly
 - **[BUILD.md](BUILD.md)** - Detailed build instructions for all platforms
+- **[ANDROID_SIGNING.md](ANDROID_SIGNING.md)** - Guide for signing Android APKs
 - **[RELEASE.md](RELEASE.md)** - How to create and publish releases
 - **[CONTRIBUTING.md](CONTRIBUTING.md)** - How to contribute to this project
 - **[LICENSE](LICENSE)** - ISC License
@@ -202,8 +203,10 @@ To point to a different URL, edit:
 
 ## Troubleshooting
 
-### White Screen on Launch
-The application has been updated to prevent white screen issues on macOS and other platforms:
+### White Screen or Loading Issues
+
+#### Desktop (macOS/Windows/Linux)
+The application has been updated to prevent white screen issues:
 - Window is hidden until content is ready to display
 - Dark background color prevents white flash during loading
 - Loading spinner appears if content takes more than 2 seconds to load
@@ -212,6 +215,18 @@ If you still experience white screen issues:
 - Check your internet connection (the app loads content from fmhy.net)
 - Try running with developer tools: `npm start -- --dev` to see console logs
 - Ensure `webSecurity: false` is set in `desktop/main.js` (required for iframe to work)
+
+#### Android
+The Android app has been updated to fix "blocked by response" errors and white screen issues:
+- Changed from HTTPS to HTTP scheme to avoid CORS/iframe loading issues
+- Added network security configuration to allow external HTTPS content
+- Enabled mixed content mode in WebView
+
+If you experience issues:
+- Make sure to run `npm run cap:sync` to update the Android project
+- Check your internet connection
+- Enable "Install from Unknown Sources" if sideloading the APK
+- Clear app data and cache if upgrading from an older version
 
 ### Desktop Build Issues
 - Ensure you have the latest version of Node.js
@@ -227,6 +242,7 @@ If you still experience white screen issues:
 - Ensure JAVA_HOME is set correctly
 - Update Android SDK via Android Studio
 - Run `./gradlew clean` in the `android/` directory
+- For signing issues, see [ANDROID_SIGNING.md](ANDROID_SIGNING.md)
 
 ## License
 

@@ -122,29 +122,66 @@ npm run cap:open:android
 
 3. **Wait for Gradle sync** (first time may take several minutes)
 
-4. **Configure signing** (for release builds):
-   - Generate a keystore: Tools → Generate Signed Bundle/APK
-   - Or use an existing keystore
-
-5. **Build and Run**:
+4. **Build and Run**:
    - Select a device/emulator from the dropdown
    - Click Run (▶) or press Shift+F10
 
-#### Build APK (Debug)
+#### Quick Build with Scripts
+
+We provide convenient build scripts for Android:
+
+**Build Debug APK** (for testing):
+```bash
+./build-android.sh debug
+```
+Output: `android/app/build/outputs/apk/debug/app-debug.apk`
+
+**Build Release APK** (for distribution):
+```bash
+./build-android.sh release
+```
+Output: `android/app/build/outputs/apk/release/app-release.apk`
+
+#### Configure APK Signing (Required for Release)
+
+To create a signed release APK that can be distributed:
+
+1. **Generate a keystore** (one-time setup):
+```bash
+./setup-signing.sh
+```
+This will create a keystore file and guide you through the process.
+
+2. **Create keystore.properties** in the `android/` directory:
+```properties
+storePassword=YOUR_KEYSTORE_PASSWORD
+keyPassword=YOUR_KEY_PASSWORD
+keyAlias=fmhy-release-key
+storeFile=app/fmhy-release-key.keystore
+```
+
+3. **Build signed release APK**:
+```bash
+./build-android.sh release
+```
+
+**Important**: Keep your keystore file and passwords safe! You'll need them to update your app in the future.
+
+#### Manual Build (Alternative)
+
+**Build APK (Debug)**:
 ```bash
 cd android
 ./gradlew assembleDebug
 ```
 Output: `android/app/build/outputs/apk/debug/app-debug.apk`
 
-#### Build APK (Release)
+**Build APK (Release)**:
 ```bash
 cd android
 ./gradlew assembleRelease
 ```
 Output: `android/app/build/outputs/apk/release/app-release.apk`
-
----
 
 ---
 
@@ -208,6 +245,13 @@ After installing on device:
 - **Gradle sync fails**: Check that JDK 17+ is installed and JAVA_HOME is set
 - **SDK not found**: Open Android Studio SDK Manager and install required components
 - **Build fails**: Try `./gradlew clean` in the android directory
+- **App shows white screen or "blocked by response" error**: This has been fixed in the latest version. Make sure to run `npm run cap:sync` to update the Android project with the latest configuration.
+- **Signing errors**: Ensure you've run `./setup-signing.sh` and created `android/keystore.properties` with your signing details
+
+### Android Runtime Issues
+- **White screen on launch**: The app now uses the `http` scheme instead of `https` to avoid CORS issues with iframes
+- **Content not loading**: Check your internet connection. The app requires internet to load https://fmhy.net
+- **Mixed content errors**: The app is configured to allow mixed content (HTTPS content in HTTP scheme WebView)
 
 ---
 
