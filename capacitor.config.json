@@ -4,7 +4,11 @@
   "webDir": "mobile",
   "bundledWebRuntime": false,
   "server": {
-    "androidScheme": "https"
+    "androidScheme": "http",
+    "allowNavigation": [
+      "https://fmhy.net",
+      "https://*.fmhy.net"
+    ]
   },
   "plugins": {
     "SplashScreen": {
